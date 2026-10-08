@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { useJuri, ACCOUNTS } from '../lib/store';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
+import JuriDAO from '../lib/juridao-engine';
 import { BuyJuriModal } from '../components/BuyJuriModal';
 import { Scale, Bell, Menu, X, Plus } from 'lucide-react';
 
@@ -14,6 +15,15 @@ export function Header() {
   const currentAcc = state?.accounts?.[account] || { eth: 10000000, juri: 0 };
   const ethFormatted = (currentAcc.eth / 1000000).toFixed(4);
   const juriFormatted = currentAcc.juri.toLocaleString();
+
+  // Notifications & Unread calculation
+  const notifications = JuriDAO.notificationsFor(state, account) || [];
+  let readState = {};
+  try {
+    const raw = localStorage.getItem(`juri_notifications_read_${account}`);
+    if (raw) readState = JSON.parse(raw);
+  } catch (e) {}
+  const unreadCount = notifications.filter(n => !readState[n.at]).length;
 
   const navLinks = [
     { name: 'Home', path: '/' },
@@ -105,13 +115,18 @@ export function Header() {
               </button>
             </div>
 
-            {/* Notifications */}
+            {/* Notifications Bell with Unread Badge */}
             <Link
               to="/notifications"
               className="p-2 text-purple-300 hover:text-purple-100 hover:bg-purple-900/40 rounded-lg relative transition-colors min-h-[44px] min-w-[44px] flex items-center justify-center"
               aria-label="Notifications"
             >
               <Bell className="w-5 h-5" />
+              {unreadCount > 0 && (
+                <span className="absolute top-1 right-1 bg-rose-500 text-white text-[10px] font-bold w-4 h-4 rounded-full flex items-center justify-center animate-pulse">
+                  {unreadCount}
+                </span>
+              )}
             </Link>
 
             {/* Account Selector */}

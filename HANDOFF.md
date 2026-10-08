@@ -1,8 +1,8 @@
 # HANDOFF (read me first)
-- Last updated: 2026-10-08T13:33 IST (08:03 UTC) by antigravity-1
-- Current phase: 7 Dispute and voting
+- Last updated: 2026-10-08T13:35 IST (08:05 UTC) by antigravity-1
+- Current phase: 8 Appeals, notifications, admin
 - Status: PHASE DONE, NEXT NOT STARTED
-- Last completed step: Built `src/pages/DisputeDetailPage.jsx`, `src/pages/JurorCasePage.jsx`, `PhaseTracker.jsx`, `EvidencePanel.jsx`, and C3 "How the jury was drawn" component. Verified commit & reveal voting flow and secrecy guards.
-- NEXT single action: Begin Phase 8 (Appeals 8.6, Notifications 8.13, Admin 8.14) per SPEC.md PART C section C7.
+- Last completed step: Built `src/components/AppealPanel.jsx`, `src/pages/NotificationsPage.jsx`, and enhanced `src/pages/AdminPage.jsx`. Verified 2-sided funding escalating dispute to Round 2 with 7 jurors.
+- NEXT single action: Begin Phase 9 (Test Lab: panels A-G, FlowTestRunner, JurorInspector, scenario seeds 1-6, checklist, runs log) per SPEC.md PART C section C7.
 - Half-finished work or risks: None. Engine self-test (7/7) and flow tests (21/21) both pass clean.
 - Last scores: self-test — 7 of 7 passed, flow tests — 21 of 21 passed

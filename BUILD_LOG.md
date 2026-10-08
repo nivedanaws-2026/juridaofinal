@@ -146,6 +146,25 @@
 - Known issues: none
 - Next single action: Phase 8 (Appeals, notifications, admin)
 
+## Phase 8: Appeals, notifications, admin
+- Status: DONE
+- Date and time: 2026-10-08T13:35 IST (08:05 UTC)
+- Account label: antigravity-1
+- Phase check: Built AppealPanel (8.6), NotificationsPage (8.13), and updated AdminPage (8.14). AppealPanel handles ruling summary, 2-column funding with challenger double fee & half-window rule guard, Execute ruling, and Withdraw appeal funds. Notifications renders notificationsFor() with unread state & bell badge. Admin page includes per-dispute phase skipping, 60s fast forward, faucet all, auto-stake all jurors (1-7 in Court 2), selftest (7 of 7 passed), reset demo, and last 50 live event logs. Verified 2-sided funding escalates case to round 2 with 7 jurors -> PASS (Flow tests: 21 of 21 passed, Engine self-test: 7 of 7 passed)
+- Engine self-test: 7 of 7 passed
+- Flow tests: 21 of 21 passed
+- Files created or changed:
+  - src/components/AppealPanel.jsx
+  - src/pages/NotificationsPage.jsx
+  - src/pages/AdminPage.jsx
+  - src/components/Header.jsx
+  - src/App.jsx
+- Deviations and decisions:
+  - Added notification read state tracking in localStorage key `juri_notifications_read_{account}` to display live unread count badges.
+- Known issues: none
+- Next single action: Phase 9 (Test Lab)
+
+
 
 
 
