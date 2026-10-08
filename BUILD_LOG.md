@@ -76,5 +76,24 @@
 - Known issues: none
 - Next single action: Phase 4 (Courts and token)
 
+## Phase 4: Courts and token
+- Status: DONE
+- Date and time: 2026-10-08T13:25 IST (07:55 UTC)
+- Account label: antigravity-1
+- Phase check: Built Courts page (8.7) with token card (C1), token panel, live JURI preview, free faucet button, court table with minimum stake, fee per juror, total staked, your stake, draw chance %, and policy toggle. Created BuyJuriModal and StakeModal. Wired all actions through act(). Verified buying 0.1 ETH gives 1,000 JURI, faucet +5,000, staking below minimum shows red toast error, and unstaking works when not locked -> PASS (Flow tests: 21 of 21 passed, Engine self-test: 7 of 7 passed)
+- Engine self-test: 7 of 7 passed
+- Flow tests: 21 of 21 passed
+- Files created or changed:
+  - src/components/BuyJuriModal.jsx
+  - src/components/StakeModal.jsx
+  - src/pages/CourtsPage.jsx
+  - src/components/Header.jsx
+  - src/App.jsx
+- Deviations and decisions:
+  - Implemented responsive mobile stacked cards for Courts table under 640px per C6 guidelines.
+- Known issues: none
+- Next single action: Phase 5 (Juror pages)
+
+
 
 

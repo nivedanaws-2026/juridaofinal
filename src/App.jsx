@@ -8,7 +8,6 @@ import {
   DealDetailPage,
   DisputeDetailPage,
   JurorDashboardPage,
-  CourtsPage,
   CasesPage,
   RewardsPage,
   NotificationsPage,
@@ -16,6 +15,7 @@ import {
 } from './pages/PageSkeletons';
 import { LandingPage } from './pages/LandingPage';
 import { GuidePage } from './pages/GuidePage';
+import { CourtsPage } from './pages/CourtsPage';
 import { AdminPage } from './pages/AdminPage';
 
 export default function App() {

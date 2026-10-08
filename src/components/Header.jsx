@@ -1,11 +1,13 @@
 import React, { useState } from 'react';
 import { useJuri, ACCOUNTS } from '../lib/store';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
+import { BuyJuriModal } from '../components/BuyJuriModal';
 import { Scale, Bell, Menu, X, Plus } from 'lucide-react';
 
 export function Header() {
   const { state, account, setAccount, mode, setMode, showToast } = useJuri();
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [buyModalOpen, setBuyModalOpen] = useState(false);
   const location = useLocation();
   const navigate = useNavigate();
 
@@ -95,8 +97,8 @@ export function Header() {
               <span className="text-purple-700">|</span>
               <span className="text-sky-400 font-mono font-medium">{juriFormatted} JURI</span>
               <button
-                onClick={() => showToast('Buy JURI Modal will open in Phase 4', 'info')}
-                className="ml-1 bg-purple-700 hover:bg-purple-600 text-white px-2 py-0.5 rounded text-xs font-semibold flex items-center gap-1 transition-colors min-h-[32px] sm:min-h-0"
+                onClick={() => setBuyModalOpen(true)}
+                className="ml-1 bg-purple-700 hover:bg-purple-600 text-white px-2 py-0.5 rounded text-xs font-semibold flex items-center gap-1 transition-colors min-h-[32px] sm:min-h-0 cursor-pointer"
               >
                 <Plus className="w-3 h-3" />
                 <span className="hidden min-[400px]:inline">Buy JURI</span>
@@ -189,6 +191,9 @@ export function Header() {
           })}
         </div>
       )}
+
+      {/* Buy JURI Modal */}
+      <BuyJuriModal isOpen={buyModalOpen} onClose={() => setBuyModalOpen(false)} />
     </header>
   );
 }
