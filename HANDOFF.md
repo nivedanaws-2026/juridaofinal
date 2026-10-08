@@ -1,8 +1,8 @@
 # HANDOFF (read me first)
-- Last updated: 2026-10-08T13:10 IST (07:40 UTC) by antigravity-1
-- Current phase: 1 Shell
+- Last updated: 2026-10-08T13:20 IST (07:50 UTC) by antigravity-1
+- Current phase: 2 Engine, store, flow tests
 - Status: PHASE DONE, NEXT NOT STARTED
-- Last completed step: Phase 1 application shell, client routing (`/`, `/deals`, `/deals/new`, `/deals/:id`, `/disputes/:id`, `/juror`, `/courts`, `/cases`, `/cases/:id`, `/rewards`, `/guide`, `/notifications`, `/admin`, `/testlab`), header token bar & account selector, mobile collapsible drawer menu (C6), dark purple styling, simulation banner & toast components created.
-- NEXT single action: Begin Phase 2 (Engine, store, flow tests) per SPEC.md PART C section C7.
-- Half-finished work or risks: None. Do NOT edit `reference/juridao-engine.js` or `reference/selftest.js` at any point. When Phase 2 begins, copy them to `src/lib/` and never edit those copies either.
-- Last scores: self-test — not built yet, flow tests — not built yet
+- Last completed step: Copied `reference/juridao-engine.js` and `reference/selftest.js` to `src/lib/` unedited. Implemented `src/lib/store.jsx` with `useJuri`, `act()`, 2-second `autoAdvance` loop, localStorage persistence (`juridao_state_v2`), and `window.JuriDAO` / `window.juriState` console helpers. Built `src/lib/flowtests.js` (21 end-to-end flow tests) and `FlowTestRunner.jsx` component mounted on Admin page.
+- NEXT single action: Begin Phase 3 (Landing and Guide) per SPEC.md PART C section C7.
+- Half-finished work or risks: None. Engine files remain completely unedited. Both self-test (7/7) and flow tests (21/21) pass clean.
+- Last scores: self-test — 7 of 7 passed, flow tests — 21 of 21 passed

@@ -1,6 +1,6 @@
 import React from 'react';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
-import { MockStoreProvider } from './context/MockStoreContext';
+import { StoreProvider } from './lib/store';
 import { Layout } from './components/Layout';
 import {
   LandingPage,
@@ -14,13 +14,13 @@ import {
   RewardsPage,
   GuidePage,
   NotificationsPage,
-  AdminPage,
   TestLabPage,
 } from './pages/PageSkeletons';
+import { AdminPage } from './pages/AdminPage';
 
 export default function App() {
   return (
-    <MockStoreProvider>
+    <StoreProvider>
       <BrowserRouter>
         <Layout>
           <Routes>
@@ -41,6 +41,6 @@ export default function App() {
           </Routes>
         </Layout>
       </BrowserRouter>
-    </MockStoreProvider>
+    </StoreProvider>
   );
 }

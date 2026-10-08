@@ -40,3 +40,24 @@
 - Known issues: none
 - Next single action: Phase 2 (Engine/store/flow tests)
 
+## Phase 2: Engine, store, flow tests
+- Status: DONE
+- Date and time: 2026-10-08T13:20 IST (07:50 UTC)
+- Account label: antigravity-1
+- Phase check: Copied juridao-engine.js & selftest.js from reference/ into src/lib/ without editing. Built store.jsx with loadState/saveState, useJuri, act(), 2-second autoAdvance, and window.JuriDAO / window.juriState exposure. Created src/lib/flowtests.js (21 browser flow tests) and FlowTestRunner.jsx component mounted on Admin page -> PASS (Flow tests: 21 of 21 passed, Engine self-test: 7 of 7 passed)
+- Engine self-test: 7 of 7 passed
+- Flow tests: 21 of 21 passed
+- Files created or changed:
+  - src/lib/juridao-engine.js (copied unedited from reference/)
+  - src/lib/selftest.js (copied unedited from reference/)
+  - src/lib/flowtests.js
+  - src/lib/store.jsx
+  - src/components/FlowTestRunner.jsx
+  - src/pages/AdminPage.jsx
+  - src/components/Header.jsx, src/components/Toast.jsx, src/App.jsx
+- Deviations and decisions:
+  - Renamed store file to `src/lib/store.jsx` as it contains React JSX elements for Provider context.
+- Known issues: none
+- Next single action: Phase 3 (Landing/Guide)
+
+

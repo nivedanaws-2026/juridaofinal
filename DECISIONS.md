@@ -7,4 +7,6 @@
 
 - 2026-10-08 | Phase 0 | reference/ files dropped in project root, not in reference/ | The three Complete Pack files (juridao-engine.js, selftest.js, juridao-engine.test.js) were added by the user to the project root instead of reference/. Builder moved them to reference/. Files verified as genuine (28,495 / 4,853 / 15,003 bytes). Phase 0 is now DONE.
 - 2026-10-08 | Phase 1 | Initialized React + Vite application with Tailwind CSS | Built the application shell, client-side routing for all required routes including `/testlab`, header with account selector, mode switcher, dummy balances, quick buy trigger, simulation banner, empty states, and responsive mobile drawer navigation adhering to SPEC.md section C6.
+- 2026-10-08 | Phase 2 | Renamed `store.js` to `store.jsx` | File contains React JSX elements (`<StoreContext.Provider>`); Vite build requires `.jsx` extension for JSX parsing.
+
 

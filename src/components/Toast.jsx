@@ -1,9 +1,9 @@
 import React from 'react';
-import { useMockStore } from '../context/MockStoreContext';
-import { AlertCircle, CheckCircle, Info, X } from 'lucide-react';
+import { useJuri } from '../lib/store';
+import { AlertCircle, CheckCircle, Info } from 'lucide-react';
 
 export function Toast() {
-  const { toast } = useMockStore();
+  const { toast } = useJuri();
 
   if (!toast) return null;
 

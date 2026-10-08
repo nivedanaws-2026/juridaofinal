@@ -1,13 +1,17 @@
 import React, { useState } from 'react';
+import { useJuri, ACCOUNTS } from '../lib/store';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
-import { useMockStore, ACCOUNTS } from '../context/MockStoreContext';
-import { Scale, Bell, Menu, X, Coins, Plus } from 'lucide-react';
+import { Scale, Bell, Menu, X, Plus } from 'lucide-react';
 
 export function Header() {
-  const { account, setAccount, mode, setMode, showToast } = useMockStore();
+  const { state, account, setAccount, mode, setMode, showToast } = useJuri();
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const location = useLocation();
   const navigate = useNavigate();
+
+  const currentAcc = state?.accounts?.[account] || { eth: 10000000, juri: 0 };
+  const ethFormatted = (currentAcc.eth / 1000000).toFixed(4);
+  const juriFormatted = currentAcc.juri.toLocaleString();
 
   const navLinks = [
     { name: 'Home', path: '/' },
@@ -87,9 +91,9 @@ export function Header() {
 
             {/* Balances & Buy JURI */}
             <div className="flex items-center gap-2 bg-[#0f0b1a] px-2.5 py-1.5 rounded-lg border border-purple-900/50 text-xs sm:text-sm">
-              <span className="text-emerald-400 font-mono font-medium">10.0000 ETH</span>
+              <span className="text-emerald-400 font-mono font-medium">{ethFormatted} ETH</span>
               <span className="text-purple-700">|</span>
-              <span className="text-sky-400 font-mono font-medium">0 JURI</span>
+              <span className="text-sky-400 font-mono font-medium">{juriFormatted} JURI</span>
               <button
                 onClick={() => showToast('Buy JURI Modal will open in Phase 4', 'info')}
                 className="ml-1 bg-purple-700 hover:bg-purple-600 text-white px-2 py-0.5 rounded text-xs font-semibold flex items-center gap-1 transition-colors min-h-[32px] sm:min-h-0"
@@ -106,7 +110,6 @@ export function Header() {
               aria-label="Notifications"
             >
               <Bell className="w-5 h-5" />
-              <span className="absolute top-1.5 right-1.5 w-2 h-2 bg-purple-500 rounded-full animate-pulse"></span>
             </Link>
 
             {/* Account Selector */}
@@ -142,7 +145,6 @@ export function Header() {
       {/* Mobile Drawer Menu */}
       {mobileMenuOpen && (
         <div className="md:hidden bg-[#1c1530] border-b border-purple-800/50 px-4 pt-2 pb-4 space-y-2">
-          {/* Mode Switcher for Mobile */}
           <div className="flex bg-[#0f0b1a] p-1 rounded-lg border border-purple-800/40 mb-3">
             <button
               onClick={() => {
