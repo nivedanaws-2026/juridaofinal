@@ -2,7 +2,6 @@ import React from 'react';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import { StoreProvider } from './lib/store';
 import { Layout } from './components/Layout';
-import { TestLabPage } from './pages/PageSkeletons';
 import { LandingPage } from './pages/LandingPage';
 import { GuidePage } from './pages/GuidePage';
 import { CourtsPage } from './pages/CourtsPage';
@@ -16,6 +15,7 @@ import { DisputeDetailPage } from './pages/DisputeDetailPage';
 import { JurorCasePage } from './pages/JurorCasePage';
 import { AdminPage } from './pages/AdminPage';
 import { NotificationsPage } from './pages/NotificationsPage';
+import { TestLabPage } from './pages/TestLabPage';
 
 export default function App() {
   return (

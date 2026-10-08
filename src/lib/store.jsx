@@ -83,7 +83,7 @@ export function StoreProvider({ children }) {
 
   const act = (fn) => {
     try {
-      const nextState = { ...state };
+      const nextState = JSON.parse(JSON.stringify(state));
       const result = fn(nextState);
       setState(nextState);
       return result;

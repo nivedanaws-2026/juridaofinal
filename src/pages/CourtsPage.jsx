@@ -195,14 +195,14 @@ export function CourtsPage() {
                       <td className="py-4 px-4 text-right space-x-2">
                         <button
                           onClick={() => setSelectedCourtForStake(court)}
-                          className="bg-purple-600 hover:bg-purple-500 text-white text-xs font-medium px-3 py-1.5 rounded-lg transition-colors min-h-[36px]"
+                          className="bg-purple-600 hover:bg-purple-500 text-white text-xs font-medium px-3 py-1.5 rounded-lg transition-colors min-h-[44px]"
                         >
                           Join / Stake
                         </button>
                         {userStake > 0 && (
                           <button
                             onClick={() => handleUnstake(court.id, userStake)}
-                            className="bg-purple-950/80 hover:bg-purple-900 border border-purple-700/50 text-purple-300 text-xs font-medium px-3 py-1.5 rounded-lg transition-colors min-h-[36px]"
+                            className="bg-purple-950/80 hover:bg-purple-900 border border-purple-700/50 text-purple-300 text-xs font-medium px-3 py-1.5 rounded-lg transition-colors min-h-[44px]"
                           >
                             Unstake
                           </button>

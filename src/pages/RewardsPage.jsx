@@ -72,52 +72,71 @@ export function RewardsPage() {
             No reward or penalty events logged for {account} yet.
           </div>
         ) : (
-          <div className="overflow-x-auto">
-            <table className="w-full text-left text-xs sm:text-sm">
-              <thead className="bg-[#140e24] text-purple-300 border-b border-purple-900/40 uppercase text-[11px] font-semibold tracking-wider">
-                <tr>
-                  <th className="py-3 px-4">Event Type</th>
-                  <th className="py-3 px-4">Dispute ID</th>
-                  <th className="py-3 px-4">Coherent</th>
-                  <th className="py-3 px-4">ETH Reward</th>
-                  <th className="py-3 px-4">JURI Reward</th>
-                  <th className="py-3 px-4">JURI Penalty</th>
-                </tr>
-              </thead>
-              <tbody className="divide-y divide-purple-900/30 text-purple-200 font-mono">
-                {rewardLogs.map((entry, idx) => (
-                  <tr key={idx} className="hover:bg-purple-900/20 transition-colors">
-                    <td className="py-3 px-4 capitalize font-semibold font-sans text-white">
-                      {entry.type}
-                    </td>
-                    <td className="py-3 px-4">
-                      {entry.disputeId ? `#${entry.disputeId}` : '-'}
-                    </td>
-                    <td className="py-3 px-4">
-                      {entry.type === 'settled' ? (
-                        entry.coherent ? (
-                          <span className="text-emerald-400 font-bold font-sans">Yes</span>
-                        ) : (
-                          <span className="text-rose-400 font-bold font-sans">No</span>
-                        )
-                      ) : (
-                        '-'
-                      )}
-                    </td>
-                    <td className="py-3 px-4 text-emerald-400">
-                      {entry.ethReward ? `+${(entry.ethReward / 1000000).toFixed(4)} ETH` : (entry.eth ? `+${(entry.eth / 1000000).toFixed(4)} ETH` : '-')}
-                    </td>
-                    <td className="py-3 px-4 text-sky-400">
-                      {entry.juriReward ? `+${entry.juriReward.toLocaleString()} JURI` : (entry.juri ? `+${entry.juri.toLocaleString()} JURI` : '-')}
-                    </td>
-                    <td className="py-3 px-4 text-rose-400">
-                      {entry.penalty ? `-${entry.penalty.toLocaleString()} JURI` : '-'}
-                    </td>
+          <>
+            <div className="hidden sm:block overflow-x-auto">
+              <table className="w-full text-left text-xs sm:text-sm">
+                <thead className="bg-[#140e24] text-purple-300 border-b border-purple-900/40 uppercase text-[11px] font-semibold tracking-wider">
+                  <tr>
+                    <th className="py-3 px-4">Event Type</th>
+                    <th className="py-3 px-4">Dispute ID</th>
+                    <th className="py-3 px-4">Coherent</th>
+                    <th className="py-3 px-4">ETH Reward</th>
+                    <th className="py-3 px-4">JURI Reward</th>
+                    <th className="py-3 px-4">JURI Penalty</th>
                   </tr>
-                ))}
-              </tbody>
-            </table>
-          </div>
+                </thead>
+                <tbody className="divide-y divide-purple-900/30 text-purple-200 font-mono">
+                  {rewardLogs.map((entry, idx) => (
+                    <tr key={idx} className="hover:bg-purple-900/20 transition-colors">
+                      <td className="py-3 px-4 capitalize font-semibold font-sans text-white">
+                        {entry.type}
+                      </td>
+                      <td className="py-3 px-4">
+                        {entry.disputeId ? `#${entry.disputeId}` : '-'}
+                      </td>
+                      <td className="py-3 px-4">
+                        {entry.type === 'settled' ? (
+                          entry.coherent ? (
+                            <span className="text-emerald-400 font-bold font-sans">Yes</span>
+                          ) : (
+                            <span className="text-rose-400 font-bold font-sans">No</span>
+                          )
+                        ) : (
+                          '-'
+                        )}
+                      </td>
+                      <td className="py-3 px-4 text-emerald-400">
+                        {entry.ethReward ? `+${(entry.ethReward / 1000000).toFixed(4)} ETH` : (entry.eth ? `+${(entry.eth / 1000000).toFixed(4)} ETH` : '-')}
+                      </td>
+                      <td className="py-3 px-4 text-sky-400">
+                        {entry.juriReward ? `+${entry.juriReward.toLocaleString()} JURI` : (entry.juri ? `+${entry.juri.toLocaleString()} JURI` : '-')}
+                      </td>
+                      <td className="py-3 px-4 text-rose-400">
+                        {entry.penalty ? `-${entry.penalty.toLocaleString()} JURI` : '-'}
+                      </td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+
+            <div className="sm:hidden p-4 space-y-4">
+              {rewardLogs.map((entry, idx) => (
+                <div key={idx} className="bg-[#0f0b1a] border border-purple-900/40 rounded-xl p-4 space-y-3 text-xs">
+                  <div className="flex justify-between items-start border-b border-purple-900/40 pb-2">
+                    <span className="capitalize font-semibold text-white">{entry.type}</span>
+                    <span className="text-purple-300">{entry.disputeId ? `Case #${entry.disputeId}` : '-'}</span>
+                  </div>
+                  <div className="grid grid-cols-2 gap-2 text-purple-300 font-mono">
+                    <div>Coherent: {entry.type === 'settled' ? (entry.coherent ? <span className="text-emerald-400 font-bold font-sans">Yes</span> : <span className="text-rose-400 font-bold font-sans">No</span>) : '-'}</div>
+                    <div>ETH: <span className="text-emerald-400">{entry.ethReward ? `+${(entry.ethReward / 1000000).toFixed(4)}` : (entry.eth ? `+${(entry.eth / 1000000).toFixed(4)}` : '-')}</span></div>
+                    <div>JURI (+): <span className="text-sky-400">{entry.juriReward ? `+${entry.juriReward.toLocaleString()}` : (entry.juri ? `+${entry.juri.toLocaleString()}` : '-')}</span></div>
+                    <div>JURI (-): <span className="text-rose-400">{entry.penalty ? `-${entry.penalty.toLocaleString()}` : '-'}</span></div>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </>
         )}
       </div>
     </div>

@@ -181,7 +181,7 @@ export function NewDealPage() {
             <button
               type="button"
               onClick={handleAddCriteria}
-              className="text-xs text-purple-400 hover:text-purple-200 flex items-center gap-1 font-medium min-h-[36px]"
+              className="text-xs text-purple-400 hover:text-purple-200 flex items-center gap-1 font-medium min-h-[44px]"
             >
               <Plus className="w-3.5 h-3.5" />
               Add line

@@ -126,7 +126,7 @@ export function DealDetailPage() {
           </div>
           <Link
             to={`/disputes/${deal.disputeId}`}
-            className="bg-purple-600 hover:bg-purple-500 text-white text-xs font-semibold px-4 py-2 rounded-lg transition-colors flex items-center gap-1 min-h-[36px]"
+            className="bg-purple-600 hover:bg-purple-500 text-white text-xs font-semibold px-4 py-2 rounded-lg transition-colors flex items-center gap-1 min-h-[44px]"
           >
             Open Dispute Page
             <ExternalLink className="w-3.5 h-3.5" />
@@ -195,7 +195,7 @@ export function DealDetailPage() {
                 placeholder="Delivery note describing completed work..."
               ></textarea>
               <div className="flex items-center gap-3">
-                <label className="cursor-pointer bg-purple-950 hover:bg-purple-900 border border-purple-700/50 text-purple-200 text-xs px-3 py-2 rounded-lg flex items-center gap-1.5 font-medium min-h-[36px]">
+                <label className="cursor-pointer bg-purple-950 hover:bg-purple-900 border border-purple-700/50 text-purple-200 text-xs px-3 py-2 rounded-lg flex items-center gap-1.5 font-medium min-h-[44px]">
                   <Upload className="w-3.5 h-3.5" />
                   {fileName ? fileName : 'Upload Deliverable File (.txt)'}
                   <input type="file" onChange={handleFileUpload} className="hidden" />
@@ -241,8 +241,8 @@ export function DealDetailPage() {
 
       {/* Raise Dispute Confirm Modal */}
       {disputeModalOpen && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/70 backdrop-blur-sm animate-fade-in">
-          <div className="bg-[#1c1530] border border-purple-800/60 w-full max-w-md rounded-2xl p-6 space-y-6 shadow-2xl relative">
+        <div className="fixed inset-0 z-50 flex items-end sm:items-center justify-center p-0 sm:p-4 bg-black/70 backdrop-blur-sm animate-fade-in">
+          <div className="bg-[#1c1530] border border-purple-800/60 w-full sm:max-w-md rounded-t-2xl sm:rounded-2xl p-6 space-y-6 shadow-2xl relative">
             <div className="flex items-center justify-between border-b border-purple-900/40 pb-4">
               <div className="flex items-center gap-2 text-white font-bold text-lg">
                 <AlertCircle className="w-5 h-5 text-rose-400" />

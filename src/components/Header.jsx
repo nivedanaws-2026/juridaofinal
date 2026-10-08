@@ -108,7 +108,7 @@ export function Header() {
               <span className="text-sky-400 font-mono font-medium">{juriFormatted} JURI</span>
               <button
                 onClick={() => setBuyModalOpen(true)}
-                className="ml-1 bg-purple-700 hover:bg-purple-600 text-white px-2 py-0.5 rounded text-xs font-semibold flex items-center gap-1 transition-colors min-h-[32px] sm:min-h-0 cursor-pointer"
+                className="ml-1 bg-purple-700 hover:bg-purple-600 text-white px-2 py-0.5 rounded text-xs font-semibold flex items-center gap-1 transition-colors min-h-[44px] sm:min-h-0 cursor-pointer"
               >
                 <Plus className="w-3 h-3" />
                 <span className="hidden min-[400px]:inline">Buy JURI</span>

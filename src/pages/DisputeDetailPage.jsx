@@ -5,12 +5,12 @@ import { useParams, Link } from 'react-router-dom';
 import { PhaseTracker } from '../components/PhaseTracker';
 import { EvidencePanel } from '../components/EvidencePanel';
 import { AppealPanel } from '../components/AppealPanel';
-import { Scale, Users, CheckCircle2, ChevronDown, ChevronUp, AlertCircle, Award } from 'lucide-react';
+import { Users, CheckCircle2, ChevronDown, ChevronUp, AlertCircle, Award } from 'lucide-react';
 
 export function DisputeDetailPage() {
   const { id } = useParams();
   const disputeId = Number(id);
-  const { state } = useJuri();
+  const { state, account } = useJuri();
 
   const [historyOpen, setHistoryOpen] = useState(false);
 
@@ -29,7 +29,6 @@ export function DisputeDetailPage() {
   const currentRoundIndex = dispute.round;
   const currentRound = dispute.rounds[currentRoundIndex];
   const warningText = JuriDAO.disputeWarning(state, dispute);
-
   const periodEnd = JuriDAO.periodEnd(state, dispute);
 
   // Jurors drawn in current round
@@ -40,12 +39,35 @@ export function DisputeDetailPage() {
   const isExecuted = dispute.period === 'Executed';
   const showChoices = ['Appeal', 'Executed'].includes(dispute.period);
 
+  // Role detection
+  const isClient = account === dispute.partyA;
+  const isFreelancer = account === dispute.partyB;
+  const isDrawnJuror = !!currentRound?.jurors?.[account];
+
   // Check C3 parties excluded
   const partiesExcluded = !drawnAddrs.includes(dispute.partyA) && !drawnAddrs.includes(dispute.partyB);
 
   // Compute total committed / revealed counts
   const committedCount = drawnAddrs.filter(a => roundJurors[a].commit).length;
   const revealedCount = drawnAddrs.filter(a => roundJurors[a].revealed).length;
+
+  // Role banner config
+  let roleBg = 'bg-purple-950/80 border-purple-700/60 text-purple-300';
+  let roleLabel = '👁 Observer';
+  let roleDesc = 'You are viewing this dispute in read-only mode. Switch to Sam (Client) or Deepa (Freelancer) in the account selector to act as a party.';
+  if (isClient) {
+    roleBg = 'bg-sky-950/80 border-sky-700/60 text-sky-200';
+    roleLabel = '👤 You are the Client (Sam)';
+    roleDesc = 'You can submit evidence and fund appeals on your side.';
+  } else if (isFreelancer) {
+    roleBg = 'bg-emerald-950/80 border-emerald-700/60 text-emerald-200';
+    roleLabel = '💼 You are the Freelancer (Deepa)';
+    roleDesc = 'You can submit evidence and fund appeals on your side.';
+  } else if (isDrawnJuror) {
+    roleBg = 'bg-amber-950/80 border-amber-700/60 text-amber-200';
+    roleLabel = '⚖️ You are a Drawn Juror';
+    roleDesc = `You were selected to vote on this case. Use My Cases → Case #${dispute.id} to commit and reveal your vote.`;
+  }
 
   return (
     <div className="space-y-8 py-2 max-w-5xl mx-auto">
@@ -68,6 +90,30 @@ export function DisputeDetailPage() {
         >
           View Associated Deal →
         </Link>
+      </div>
+
+      {/* Role Banner */}
+      <div className={`border rounded-xl p-4 flex items-start justify-between gap-3 text-xs ${roleBg}`}>
+        <div className="space-y-0.5">
+          <div className="font-bold text-sm">{roleLabel}</div>
+          <div className="opacity-80">{roleDesc}</div>
+        </div>
+        {isDrawnJuror && dispute.period === 'Commit' && !currentRound?.jurors?.[account]?.commit && (
+          <a
+            href={`/cases/${dispute.id}`}
+            className="shrink-0 bg-amber-600 hover:bg-amber-500 text-white font-bold text-xs px-3 py-2 rounded-lg transition-colors min-h-[44px] flex items-center whitespace-nowrap"
+          >
+            Go Vote →
+          </a>
+        )}
+        {isDrawnJuror && dispute.period === 'Reveal' && !currentRound?.jurors?.[account]?.revealed && (
+          <a
+            href={`/cases/${dispute.id}`}
+            className="shrink-0 bg-amber-600 hover:bg-amber-500 text-white font-bold text-xs px-3 py-2 rounded-lg transition-colors min-h-[44px] flex items-center whitespace-nowrap"
+          >
+            Reveal Vote →
+          </a>
+        )}
       </div>
 
       {/* Phase Tracker */}
@@ -96,11 +142,11 @@ export function DisputeDetailPage() {
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 text-xs">
           <div className="bg-[#0f0b1a] p-4 rounded-xl border border-purple-900/30">
             <span className="font-bold text-white block text-sm mb-1">Answer 1: Pay Freelancer</span>
-            <span className="text-purple-300">Releases locked deal escrow ({ (deal?.amount / 1000000).toFixed(4) } ETH) to Deepa.</span>
+            <span className="text-purple-300">Releases locked deal escrow ({deal ? (deal.amount / 1000000).toFixed(4) : '0.0000'} ETH) to Deepa.</span>
           </div>
           <div className="bg-[#0f0b1a] p-4 rounded-xl border border-purple-900/30">
             <span className="font-bold text-white block text-sm mb-1">Answer 2: Refund Client</span>
-            <span className="text-purple-300">Refunds locked deal escrow ({ (deal?.amount / 1000000).toFixed(4) } ETH) to Sam.</span>
+            <span className="text-purple-300">Refunds locked deal escrow ({deal ? (deal.amount / 1000000).toFixed(4) : '0.0000'} ETH) to Sam.</span>
           </div>
         </div>
       </div>
@@ -121,7 +167,6 @@ export function DisputeDetailPage() {
             </div>
           </div>
 
-          {/* C3 "How the jury was drawn" Box */}
           <div className="bg-[#0f0b1a] border border-purple-900/40 rounded-xl p-5 space-y-3 text-xs">
             <h4 className="font-bold text-white text-sm">How the jury was drawn</h4>
             <div className="space-y-1.5 text-purple-300">
@@ -135,13 +180,13 @@ export function DisputeDetailPage() {
               </div>
             </div>
 
-            <div className="pt-2 border-t border-purple-900/30">
+            <div className="pt-2 border-t border-purple-900/30 overflow-x-auto">
               <table className="w-full text-left text-xs">
                 <thead className="text-purple-400 uppercase text-[10px]">
                   <tr>
                     <th className="py-2">Juror</th>
                     <th className="py-2">Draws</th>
-                    <th className="py-2">Court Stake Weight</th>
+                    <th className="py-2">Stake Weight</th>
                     <th className="py-2">Status</th>
                     {showChoices && <th className="py-2">Choice & Reasoning</th>}
                   </tr>
@@ -153,10 +198,14 @@ export function DisputeDetailPage() {
                     const totalCourtStaked = court?.totalStaked || 1;
                     const weightPct = ((jurorStake / totalCourtStaked) * 100).toFixed(1);
                     const jurorName = ACCOUNTS[addr]?.name || addr;
+                    const isYou = addr === account;
 
                     return (
-                      <tr key={addr}>
-                        <td className="py-2 font-sans font-semibold text-white">{jurorName}</td>
+                      <tr key={addr} className={isYou ? 'bg-amber-950/30' : ''}>
+                        <td className="py-2 font-sans font-semibold text-white">
+                          {jurorName}
+                          {isYou && <span className="ml-1.5 text-[10px] text-amber-400 font-normal">(you)</span>}
+                        </td>
                         <td className="py-2">{j.draws}</td>
                         <td className="py-2 text-sky-400">{weightPct}%</td>
                         <td className="py-2 font-sans uppercase text-[11px]">
@@ -172,7 +221,7 @@ export function DisputeDetailPage() {
                           <td className="py-2 font-sans text-xs">
                             {j.revealed ? (
                               <span>
-                                <strong className="text-purple-200">Option {j.choice}</strong> - "{j.justification}"
+                                <strong className="text-purple-200">Option {j.choice}</strong> — "{j.justification}"
                               </span>
                             ) : (
                               <span className="text-rose-400">Not Revealed</span>

@@ -94,14 +94,14 @@ export function FlowTestRunner() {
             <div className="flex items-center gap-2">
               <button
                 onClick={handleCopy}
-                className="bg-purple-950/80 hover:bg-purple-900 text-purple-200 border border-purple-700/50 px-3 py-1.5 rounded text-xs font-medium flex items-center gap-1 min-h-[36px]"
+                className="bg-purple-950/80 hover:bg-purple-900 text-purple-200 border border-purple-700/50 px-3 py-1.5 rounded text-xs font-medium flex items-center gap-1 min-h-[44px]"
               >
                 <Copy className="w-3.5 h-3.5" />
                 {copied ? 'Copied!' : 'Copy report'}
               </button>
               <button
                 onClick={handleDownload}
-                className="bg-purple-950/80 hover:bg-purple-900 text-purple-200 border border-purple-700/50 px-3 py-1.5 rounded text-xs font-medium flex items-center gap-1 min-h-[36px]"
+                className="bg-purple-950/80 hover:bg-purple-900 text-purple-200 border border-purple-700/50 px-3 py-1.5 rounded text-xs font-medium flex items-center gap-1 min-h-[44px]"
               >
                 <Download className="w-3.5 h-3.5" />
                 Download (.txt)

@@ -143,7 +143,7 @@ export function DealsPage() {
                     </span>
                     <Link
                       to={`/deals/${deal.id}`}
-                      className="bg-purple-600 hover:bg-purple-500 text-white text-xs font-semibold px-4 py-2 rounded-lg transition-colors flex items-center gap-1 min-h-[36px]"
+                      className="bg-purple-600 hover:bg-purple-500 text-white text-xs font-semibold px-4 py-2 rounded-lg transition-colors flex items-center gap-1 min-h-[44px]"
                     >
                       View Details
                       <ArrowRight className="w-3.5 h-3.5" />

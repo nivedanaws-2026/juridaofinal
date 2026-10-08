@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useJuri } from '../lib/store';
 import JuriDAO from '../lib/juridao-engine';
-import { FileText, Plus, Upload, ShieldCheck } from 'lucide-react';
+import { FileText, Plus, Upload, Lock } from 'lucide-react';
 
 export function EvidencePanel({ dispute, isExecuted }) {
   const { account, act, showToast } = useJuri();
@@ -11,6 +11,11 @@ export function EvidencePanel({ dispute, isExecuted }) {
   const [fileText, setFileText] = useState('');
 
   const evidenceList = dispute?.evidence || [];
+
+  // Role-based access
+  const isClient = account === dispute?.partyA;
+  const isFreelancer = account === dispute?.partyB;
+  const isParty = isClient || isFreelancer;
 
   const handleFileUpload = (e) => {
     const file = e.target.files[0];
@@ -47,11 +52,28 @@ export function EvidencePanel({ dispute, isExecuted }) {
   // Group evidence by role
   const clientEvidence = evidenceList.filter(e => e.role === 'client');
   const freelancerEvidence = evidenceList.filter(e => e.role === 'freelancer');
-  const otherEvidence = evidenceList.filter(e => e.role !== 'client' && e.role !== 'freelancer');
 
   return (
     <div className="bg-[#1c1530] border border-purple-900/50 rounded-xl p-6 space-y-6">
-      <h3 className="text-lg font-bold text-white">Dispute Evidence ({evidenceList.length})</h3>
+      <div className="flex items-center justify-between">
+        <h3 className="text-lg font-bold text-white">Dispute Evidence ({evidenceList.length})</h3>
+        {!isParty && !isExecuted && (
+          <span className="text-[11px] bg-purple-950/80 border border-purple-800/40 text-purple-400 px-2.5 py-1 rounded-lg flex items-center gap-1.5">
+            <Lock className="w-3 h-3" />
+            View-only — only parties can submit evidence
+          </span>
+        )}
+        {isClient && !isExecuted && (
+          <span className="text-[11px] bg-sky-950/80 border border-sky-700/40 text-sky-300 px-2.5 py-1 rounded-lg">
+            Viewing as Client (Sam)
+          </span>
+        )}
+        {isFreelancer && !isExecuted && (
+          <span className="text-[11px] bg-emerald-950/80 border border-emerald-700/40 text-emerald-300 px-2.5 py-1 rounded-lg">
+            Viewing as Freelancer (Deepa)
+          </span>
+        )}
+      </div>
 
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
         {/* Client Evidence */}
@@ -107,12 +129,12 @@ export function EvidencePanel({ dispute, isExecuted }) {
         </div>
       </div>
 
-      {/* Submit Evidence Form */}
-      {!isExecuted && (
+      {/* Submit Evidence Form — only for parties */}
+      {!isExecuted && isParty && (
         <form onSubmit={handleSubmitEvidence} className="bg-[#0f0b1a] p-6 rounded-xl border border-purple-900/40 space-y-4 pt-4">
           <h4 className="font-bold text-white text-sm flex items-center gap-2">
             <Plus className="w-4 h-4 text-purple-400" />
-            Submit Additional Evidence
+            Submit Evidence as {isClient ? 'Client (Sam)' : 'Freelancer (Deepa)'}
           </h4>
 
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
@@ -147,6 +169,14 @@ export function EvidencePanel({ dispute, isExecuted }) {
             Submit Evidence
           </button>
         </form>
+      )}
+
+      {/* Non-party locked message */}
+      {!isExecuted && !isParty && (
+        <div className="bg-[#0f0b1a] border border-purple-900/30 rounded-xl p-4 text-center text-xs text-purple-500 flex items-center justify-center gap-2">
+          <Lock className="w-4 h-4" />
+          Switch to Sam (Client) or Deepa (Freelancer) to submit evidence.
+        </div>
       )}
     </div>
   );
