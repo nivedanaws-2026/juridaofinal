@@ -60,4 +60,21 @@
 - Known issues: none
 - Next single action: Phase 3 (Landing/Guide)
 
+## Phase 3: Landing and Guide
+- Status: DONE
+- Date and time: 2026-10-08T13:23 IST (07:53 UTC)
+- Account label: antigravity-1
+- Phase check: Landing page built with Hero, live stats (disputes executed, JURI staked, ETH locked in deals labelled "demo data"), Sam & Deepa problem story, 6 lifecycle steps, 4 Why JuriDAO cards, audience blocks & FAQ. Guide page built with 6-step lifecycle walkthrough, juror draw rules, commit & reveal explanation, worked reward/penalty calculations, and appeal rules -> PASS (Flow tests: 21 of 21 passed, Engine self-test: 7 of 7 passed)
+- Engine self-test: 7 of 7 passed
+- Flow tests: 21 of 21 passed
+- Files created or changed:
+  - src/pages/LandingPage.jsx
+  - src/pages/GuidePage.jsx
+  - src/App.jsx
+- Deviations and decisions:
+  - Extracted Landing and Guide pages from skeletons into full-featured components reading live `state` for statistics.
+- Known issues: none
+- Next single action: Phase 4 (Courts and token)
+
+
 

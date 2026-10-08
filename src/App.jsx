@@ -3,7 +3,6 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import { StoreProvider } from './lib/store';
 import { Layout } from './components/Layout';
 import {
-  LandingPage,
   DealsPage,
   NewDealPage,
   DealDetailPage,
@@ -12,10 +11,11 @@ import {
   CourtsPage,
   CasesPage,
   RewardsPage,
-  GuidePage,
   NotificationsPage,
   TestLabPage,
 } from './pages/PageSkeletons';
+import { LandingPage } from './pages/LandingPage';
+import { GuidePage } from './pages/GuidePage';
 import { AdminPage } from './pages/AdminPage';
 
 export default function App() {

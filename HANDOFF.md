@@ -1,8 +1,8 @@
 # HANDOFF (read me first)
-- Last updated: 2026-10-08T13:20 IST (07:50 UTC) by antigravity-1
-- Current phase: 2 Engine, store, flow tests
+- Last updated: 2026-10-08T13:23 IST (07:53 UTC) by antigravity-1
+- Current phase: 3 Landing and Guide
 - Status: PHASE DONE, NEXT NOT STARTED
-- Last completed step: Copied `reference/juridao-engine.js` and `reference/selftest.js` to `src/lib/` unedited. Implemented `src/lib/store.jsx` with `useJuri`, `act()`, 2-second `autoAdvance` loop, localStorage persistence (`juridao_state_v2`), and `window.JuriDAO` / `window.juriState` console helpers. Built `src/lib/flowtests.js` (21 end-to-end flow tests) and `FlowTestRunner.jsx` component mounted on Admin page.
-- NEXT single action: Begin Phase 3 (Landing and Guide) per SPEC.md PART C section C7.
-- Half-finished work or risks: None. Engine files remain completely unedited. Both self-test (7/7) and flow tests (21/21) pass clean.
+- Last completed step: Created `src/pages/LandingPage.jsx` with live stats reading from engine `state` (disputes executed, total JURI staked, ETH locked in active deals labelled "demo data"), problem story, 6 lifecycle steps, 4 feature cards, audience sections, and FAQ. Created `src/pages/GuidePage.jsx` with full protocol documentation and worked examples.
+- NEXT single action: Begin Phase 4 (Courts and token) per SPEC.md PART C section C7.
+- Half-finished work or risks: None. Engine self-test (7/7) and flow tests (21/21) both pass clean.
 - Last scores: self-test — 7 of 7 passed, flow tests — 21 of 21 passed
