@@ -3,9 +3,6 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import { StoreProvider } from './lib/store';
 import { Layout } from './components/Layout';
 import {
-  DealsPage,
-  NewDealPage,
-  DealDetailPage,
   DisputeDetailPage,
   NotificationsPage,
   TestLabPage,
@@ -16,6 +13,9 @@ import { CourtsPage } from './pages/CourtsPage';
 import { JurorDashboardPage } from './pages/JurorDashboardPage';
 import { CasesPage } from './pages/CasesPage';
 import { RewardsPage } from './pages/RewardsPage';
+import { DealsPage } from './pages/DealsPage';
+import { NewDealPage } from './pages/NewDealPage';
+import { DealDetailPage } from './pages/DealDetailPage';
 import { AdminPage } from './pages/AdminPage';
 
 export default function App() {

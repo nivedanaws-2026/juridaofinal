@@ -111,6 +111,24 @@
 - Known issues: none
 - Next single action: Phase 6 (Deals)
 
+## Phase 6: Deals
+- Status: DONE
+- Date and time: 2026-10-08T13:30 IST (08:00 UTC)
+- Account label: antigravity-1
+- Phase check: Built Deals list (8.2), Create deal (8.3), and Deal detail (8.4). Verified creating 1 ETH deal locks Sam's ETH (balance becomes 9.0000 ETH), freelancer can upload deliverable file & mark delivered, client can approve & release payment, and raising a dispute opens a confirm modal with fee preview (0.0060 ETH for 3 jurors), frozen funds warning, and juror question/answer preview (Deepa balance becomes 9.9940 ETH after raising dispute) -> PASS (Flow tests: 21 of 21 passed, Engine self-test: 7 of 7 passed)
+- Engine self-test: 7 of 7 passed
+- Flow tests: 21 of 21 passed
+- Files created or changed:
+  - src/pages/DealsPage.jsx
+  - src/pages/NewDealPage.jsx
+  - src/pages/DealDetailPage.jsx
+  - src/App.jsx
+- Deviations and decisions:
+  - Added FileReader text parsing for deliverable files to calculate fingerprints using engine fileFingerprint helper.
+- Known issues: none
+- Next single action: Phase 7 (Dispute and voting)
+
+
 
 
 
