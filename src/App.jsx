@@ -7,15 +7,15 @@ import {
   NewDealPage,
   DealDetailPage,
   DisputeDetailPage,
-  JurorDashboardPage,
-  CasesPage,
-  RewardsPage,
   NotificationsPage,
   TestLabPage,
 } from './pages/PageSkeletons';
 import { LandingPage } from './pages/LandingPage';
 import { GuidePage } from './pages/GuidePage';
 import { CourtsPage } from './pages/CourtsPage';
+import { JurorDashboardPage } from './pages/JurorDashboardPage';
+import { CasesPage } from './pages/CasesPage';
+import { RewardsPage } from './pages/RewardsPage';
 import { AdminPage } from './pages/AdminPage';
 
 export default function App() {

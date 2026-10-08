@@ -94,6 +94,24 @@
 - Known issues: none
 - Next single action: Phase 5 (Juror pages)
 
+## Phase 5: Juror pages
+- Status: DONE
+- Date and time: 2026-10-08T13:28 IST (07:58 UTC)
+- Account label: antigravity-1
+- Phase check: Built Juror Dashboard (8.8), My Cases (8.9), and Rewards (8.11). Dashboard renders pending ETH/JURI rewards, coherence performance %, case counts (pending, in progress, closed), staked courts list with drawing probabilities, latest 5 notifications, and quick buttons. My Cases supports tabs (Vote pending, In progress, Closed) reading from jurorCases(). Rewards renders claim button and history table from settled and claimed log entries -> PASS (Flow tests: 21 of 21 passed, Engine self-test: 7 of 7 passed)
+- Engine self-test: 7 of 7 passed
+- Flow tests: 21 of 21 passed
+- Files created or changed:
+  - src/pages/JurorDashboardPage.jsx
+  - src/pages/CasesPage.jsx
+  - src/pages/RewardsPage.jsx
+  - src/App.jsx
+- Deviations and decisions:
+  - Rendered clean empty states when no cases or rewards exist for an account.
+- Known issues: none
+- Next single action: Phase 6 (Deals)
+
+
 
 
 
