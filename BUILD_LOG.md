@@ -6,7 +6,7 @@
 - Status: DONE
 - Date and time: 2026-10-08T12:29 IST (07:00 UTC)
 - Account label: antigravity-1
-- Phase check: BUILD_LOG.md, HANDOFF.md, DECISIONS.md, SPEC.md exist; Complete Pack files in reference/ → PARTIAL (see Known issues)
+- Phase check: BUILD_LOG.md, HANDOFF.md, DECISIONS.md, SPEC.md exist; Complete Pack files in reference/ → PASS (all three confirmed present and unedited)
 - Engine self-test: not built yet
 - Flow tests: not built yet
 - Files created or changed:
@@ -17,9 +17,6 @@
   - logs/ logs/raw/ logs/tests/ scripts/ src/ reference/ (directories)
 - Deviations and decisions:
   - The user's message said "The full spec follows:" but no spec text was pasted. The spec already existed as JuriDAO_ThinkRoot.md in the project root. SPEC.md was created as a copy of that file. Logged in DECISIONS.md.
-  - The three Complete Pack reference files (juridao-engine.js, selftest.js, juridao-engine.test.js) were not attached to the Phase 0 message. reference/ folder was created but is empty. Phase 0 is marked PARTIAL until the user provides these files.
-- Known issues:
-  - reference/juridao-engine.js — MISSING (not attached by user)
-  - reference/selftest.js — MISSING (not attached by user)
-  - reference/juridao-engine.test.js — MISSING (not attached by user)
-- Next single action: User must supply the three reference files. Once all three are placed in reference/, Phase 0 is DONE and Phase 1 (Shell) can begin.
+  - The three Complete Pack reference files were placed in the project root by the user (not in reference/); moved to reference/ by the builder. Files verified: juridao-engine.js (28,495 bytes), selftest.js (4,853 bytes), juridao-engine.test.js (15,003 bytes). All are genuine engine files — not edited.
+- Known issues: none
+- Next single action: Phase 1 (Shell) — user to send the Phase 1 prompt from SPEC.md PART C section C7.
