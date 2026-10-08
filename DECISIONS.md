@@ -1,0 +1,6 @@
+# JuriDAO Simulator — Decisions and Deviations
+
+<!-- Append newest at the bottom. Format: date | Phase N | what was assumed or changed | why -->
+
+- 2026-10-08 | Phase 0 | SPEC.md created as a copy of JuriDAO_ThinkRoot.md | The user's Phase 0 message said "The full spec follows:" but no spec text was pasted after that line. The spec document already existed in the project root as JuriDAO_ThinkRoot.md. SPEC.md was created as an exact copy of that file.
+- 2026-10-08 | Phase 0 | reference/ folder created but is empty | The three Complete Pack files (juridao-engine.js, selftest.js, juridao-engine.test.js) were referenced in the user's Phase 0 message as "attached" but were not present in the workspace. Per SPEC.md PART B section 0 rule 2 and PART C section C2, the engine must never be written by the builder. Phase 0 is marked PARTIAL until all three files are supplied by the user.
