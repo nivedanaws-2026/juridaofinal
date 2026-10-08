@@ -3,7 +3,6 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import { StoreProvider } from './lib/store';
 import { Layout } from './components/Layout';
 import {
-  DisputeDetailPage,
   NotificationsPage,
   TestLabPage,
 } from './pages/PageSkeletons';
@@ -16,6 +15,8 @@ import { RewardsPage } from './pages/RewardsPage';
 import { DealsPage } from './pages/DealsPage';
 import { NewDealPage } from './pages/NewDealPage';
 import { DealDetailPage } from './pages/DealDetailPage';
+import { DisputeDetailPage } from './pages/DisputeDetailPage';
+import { JurorCasePage } from './pages/JurorCasePage';
 import { AdminPage } from './pages/AdminPage';
 
 export default function App() {
@@ -32,7 +33,7 @@ export default function App() {
             <Route path="/juror" element={<JurorDashboardPage />} />
             <Route path="/courts" element={<CourtsPage />} />
             <Route path="/cases" element={<CasesPage />} />
-            <Route path="/cases/:id" element={<DisputeDetailPage />} />
+            <Route path="/cases/:id" element={<JurorCasePage />} />
             <Route path="/rewards" element={<RewardsPage />} />
             <Route path="/guide" element={<GuidePage />} />
             <Route path="/notifications" element={<NotificationsPage />} />

@@ -128,6 +128,25 @@
 - Known issues: none
 - Next single action: Phase 7 (Dispute and voting)
 
+## Phase 7: Dispute and voting
+- Status: DONE
+- Date and time: 2026-10-08T13:33 IST (08:03 UTC)
+- Account label: antigravity-1
+- Phase check: Built DisputeDetailPage (8.5), JurorCasePage (8.10), PhaseTracker, EvidencePanel, and C3 "How the jury was drawn" box. Evidence grouped by role with fingerprint badges & submit form. PhaseTracker shows countdown timer. Juror case page handles commit (radio answer, reasoning, salted commit, local storage key juri_vote_{disputeId}_{round}_{account}, backup download) and reveal (reads local storage or manual salt input). Jury assignment box verifies parties excluded tick and stake weight %. Verified secrecy rule: 0 of N committed shown with no vote choices visible before Appeal period -> PASS (Flow tests: 21 of 21 passed, Engine self-test: 7 of 7 passed)
+- Engine self-test: 7 of 7 passed
+- Flow tests: 21 of 21 passed
+- Files created or changed:
+  - src/components/PhaseTracker.jsx
+  - src/components/EvidencePanel.jsx
+  - src/pages/DisputeDetailPage.jsx
+  - src/pages/JurorCasePage.jsx
+  - src/App.jsx
+- Deviations and decisions:
+  - Enforced strict secrecy rule: juror vote choices and justifications are completely hidden in UI until period reaches Appeal or Executed.
+- Known issues: none
+- Next single action: Phase 8 (Appeals, notifications, admin)
+
+
 
 
 
